@@ -1,0 +1,14 @@
+#!/bin/bash
+process_line="$(ps ax | grep $1 | grep -v 'grep' | head -1)"
+if [[ $process_line = '' ]]; then
+    echo "No process found"
+    exit
+fi
+
+process_name="$(echo "$process_line" | awk '{ s = ""; for (i = 5; i <= NF; i++) s = s $i " "; print s }')"
+process_id="$(echo "$process_line" | awk '{print $1}')"
+
+echo -n "Kill $process_name? (y/n): "; read input
+if [[ $input = 'y' ]] || [[ $input = 'Y' ]]; then
+    kill "$process_id"
+fi

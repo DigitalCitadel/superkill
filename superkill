@@ -1,6 +1,6 @@
 #!/bin/bash
-process_line="$(ps ax | grep $1 | grep -v 'superkill' | grep -v 'grep' | head -1)"
-if [[ $process_line = '' ]]; then
+process_line="$(ps ax | grep "$1" | grep -v 'superkill' | grep -v 'grep' | head -1)"
+if [[ "$process_line" = '' ]]; then
     echo "No process found"
     exit
 fi
@@ -9,7 +9,7 @@ process_name="$(echo "$process_line" | awk '{ s = ""; for (i = 5; i <= NF; i++) 
 process_id="$(echo "$process_line" | awk '{print $1}')"
 
 echo -n "kill $process_name? (y/n): "; read input
-if [[ $input = 'y' ]] || [[ $input = 'Y' ]]; then
+if [[ "$input" = 'y' ]] || [[ "$input" = 'Y' ]]; then
     echo ">> killing $process_name"
     kill "$process_id"
 fi

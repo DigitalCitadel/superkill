@@ -51,3 +51,7 @@ Answering `y` (case insensitive) will kill the process while logging:
 ```
 
 Any other response will exit silently and not kill anything.
+
+## License
+
+[MIT](license.md)
